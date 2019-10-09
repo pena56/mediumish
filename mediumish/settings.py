@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import dj_database_url
 
+import cloudinary
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'crispy_forms',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +63,7 @@ ROOT_URLCONF = 'mediumish.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,6 +132,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+cloudinary.config(
+    cloud_name = 'dpekd69lp',
+    api_key = '889197881362592',
+    api_secret = 'Wmx0tmnWl6rNCIjX7MwFbfA23Ds'
+)
+
+AUTH_USER_MODEL = 'account.CustomUser'
+
+LOGOUT_REDIRECT_URL = 'login'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

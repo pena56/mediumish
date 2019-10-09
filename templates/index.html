@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="category-menu">
+	<div class="container">
+		<div class="row m-auto">
+			{% for category in categories %}
+			<a href="{% url 'topic_page' slug=category.slug %}" class="btn btn-link btn-sm text-dark"><span
+					class="text-uppercase">{{category.name}}</span></a>
+			{% endfor %}
+			<a href="{% url 'topics_page' %}" class="btn btn-link btn-sm text-dark"><span class="text-uppercase">See
+					All</span></a>
+		</div>
+	</div>
+</section>
+
+<!-- Begin Site Title
+================================================== -->
+<div class="mainheading">
+	<h1 class="sitetitle">Mediumish</h1>
+	<p class="lead">
+		A Medium style Application Built with Django
+	</p>
+</div>
+<!-- End Site Title
+================================================== -->
+
+<!-- Begin Featured
+	================================================== -->
+<section class="featured-posts">
+	<div class="section-title">
+		<h2><span>Featured</span></h2>
+	</div>
+	<div class="card-columns listfeaturedtag">
+
+		{% for feature in features %}
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="{{feature.article.get_absolute_url}}">
+						<div class="thumbnail" style="background-image:url({{feature.article.cover_img.url}});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a
+								href="{{feature.article.get_absolute_url}}">{{feature.article.title}}</a></h2>
+						<h4 class="card-text">{{feature.article.body|truncatewords:'15'}}</h4>
+						<div class="metafooter">
+							<div class="wrapfooter">
+								<span class="meta-footer-thumb">
+									<a href=""><img class="author-thumb"
+											src="{{feature.article.author.profile_pic.url}}"
+											alt="{{feature.article.author}}"></a>
+								</span>
+								<span class="author-meta">
+									<span class="post-name"><a href="">{{feature.article.author.first_name}}
+											{{feature.article.author.last_name}}</a></span><br />
+									<span class="post-date">{{feature.article.updated_at|date:'d M y'}}</span><span
+										class="dot"></span><span class="post-read">{{feature.article.get_read_time}} min
+										read</span>
+								</span>
+								<span class="post-read-more"><a href="{{feature.article.get_absolute_url}}"
+										title="Read Story"><svg class="svgIcon-use" width="25" height="25"
+											viewbox="0 0 25 25">
+											<path
+												d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z"
+												fill-rule="evenodd"></path>
+										</svg></a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end post -->
+		{% endfor %}
+
+	</div>
+</section>
+<!-- End Featured
+	================================================== -->
+
+<!-- Begin List Posts
+	================================================== -->
+<section class="recent-posts">
+	<div class="section-title">
+		<h2><span>All Stories</span></h2>
+	</div>
+	<div class="card-columns listrecent">
+
+		<div class="article-feed">
+			{% for article in articles %}
+			<!-- begin post -->
+			<div class="card article-item">
+				<a href="{{article.get_absolute_url}}">
+					<img class="img-fluid" src="{{article.cover_img.url}}" alt="">
+				</a>
+				<div class="card-block">
+					<h2 class="card-title"><a href="{{article.get_absolute_url}}">{{article.title}}</a></h2>
+					<h4 class="card-text">{{article.body|truncatewords:'20'}}</h4>
+					<div class="metafooter">
+						<div class="wrapfooter">
+							<span class="meta-footer-thumb">
+								<a href="author.html"><img class="author-thumb" src="{{article.author.profile_pic.url}}"
+										alt="{{article.author}}"></a>
+							</span>
+							<span class="author-meta">
+								<span class="post-name"><a href="">{{article.author.first_name}}
+										{{article.author.last_name}}</a></span><br />
+								<span class="post-date">{{article.updated_at|date:'d M y'}}</span><span
+									class="dot"></span><span class="post-read">{{article.get_read_time}} min read</span>
+							</span>
+							<span class="post-read-more"><a href="post.html" title="Read Story"><svg class="svgIcon-use"
+										width="25" height="25" viewbox="0 0 25 25">
+										<path
+											d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z"
+											fill-rule="evenodd"></path>
+									</svg></a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end post -->
+			{% endfor %}
+		</div>
+
+		<div class="scroller-status row">
+			<div class="infinite-scroll-request loader-ellips">
+				...
+			</div>
+			<p class="infinite-scroll-last text-center">No More Articles</p>
+			<p class="infinite-scroll-error">No more pages to load</p>
+		</div>
+
+		{% if articles.has_next %}
+		<p class="pagination">
+			<a class="pagination__next" href="?page={{articles.next_page_number}}">Next page</a>
+		</p>
+		{% endif %}
+
+	</div>
+</section>
+<!-- End List Posts
+	================================================== -->
+{% endblock %}
+
+{% block script %}
+<script>
+	$('.article-feed').infiniteScroll({
+		path: '.pagination__next',
+		append: '.article-item',
+		status: '.scroller-status',
+		hideNav: '.pagination',
+	});
+</script>
+{% endblock %}

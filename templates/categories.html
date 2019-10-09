@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        
+        <section class="featured-posts">
+            <div class="section-title">
+                <h2><span>Explore All Topics</span></h2>
+            </div>
+            <div class="card-columns listfeaturedtag">
+
+                <!-- begin post -->
+                {% for category in categories %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-5 wrapthumbnail">
+                            <a href="{{category.get_absolute_url}}">
+                                <div class="thumbnail" style="background-image:url({{category.category_img.url}});">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-block">
+                                <h2 class="card-title"><a href="{{category.get_absolute_url}}">{{category.name}}</a></h2>
+                                <h4 class="card-text">{{category.desc}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end post -->
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</section>
+<!-- End List Posts
+	================================================== -->
+{% endblock %}
