@@ -1,0 +1,81 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <title>Mediumish - Update Profile</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Update Profile</h5>
+                        <form class="form-signin" method="POST" enctype="multipart/form-data" action="{% url 'update_user' pk=user.id %}">
+                            {% csrf_token %}
+                            <div class="form-label-group">
+                                <input type="text" id="inputFirstname" class="form-control" placeholder="Firstname"
+                                    required autofocus name="first_name">
+                                <label for="inputFirstname">Firstname</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="inputLastname" class="form-control" placeholder="Lastname"
+                                    required autofocus name="last_name">
+                                <label for="inputLastname">Lastname</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email"
+                                    required name="email">
+                                <label for="inputEmail">Email</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <textarea id="inputBio" class="form-control" placeholder="Bio"
+                                required name="bio" cols="30" rows="3"></textarea>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="url" id="inputFacebook" class="form-control" placeholder="Facebook URL"
+                                    required name="facebook_profile">
+                                <label for="inputFacebook">Facebook Profile</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="url" id="inputTwitter" class="form-control" placeholder="Twitter URL"
+                                    required name="twitter_profile">
+                                <label for="inputTwitter">Twitter Profile</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="file" id="inputProfilepic" class="form-control" placeholder="Email"
+                                    required name="profile_pic">
+                                <label for="inputProfilepic">Profile Pic</label>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

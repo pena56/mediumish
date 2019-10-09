@@ -1,0 +1,58 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <title>Mediumish - Log In</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Sign In</h5>
+                        <form class="form-signin" method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <div class="form-label-group">
+                                <input type="text" id="inputUsername" class="form-control" placeholder="Username"
+                                    required autofocus name="username">
+                                <label for="inputUsername">Username</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                                    required name="password">
+                                <label for="inputPassword">Password</label>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
+                                in</button>
+                            <hr class="my-4">
+                            <a href="" class="btn btn-lg btn-instagram btn-block text-uppercase" type="submit"><i
+                                    class="fab fa-twitter mr-2"></i> Sign in with Instagram</a>
+                            <a href="" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                                    class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
