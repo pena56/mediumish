@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8417575cd4fc60ab96d899e6b7041fc2aed61eb3615a7a0c93133592fdd544fb"
+            "sha256": "1c0d8a8f88144ea31a3c77291024f0ac9e671792cad306ec70c21d48b28dc2bc"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -46,13 +46,6 @@
             "index": "pypi",
             "version": "==2.2.6"
         },
-        "django-appconf": {
-            "hashes": [
-                "sha256:35f13ca4d567f132b960e2cd4c832c2d03cb6543452d34e29b7ba10371ba80e3",
-                "sha256:c98a7af40062e996b921f5962a1c4f3f0c979fa7885f7be4710cceb90ebe13a6"
-            ],
-            "version": "==1.0.3"
-        },
         "django-crispy-forms": {
             "hashes": [
                 "sha256:5952bab971110d0b86c278132dae0aa095beee8f723e625c3d3fa28888f1675f",
@@ -70,12 +63,8 @@
             "version": "==0.3.1"
         },
         "django-mediumeditor": {
-            "hashes": [
-                "sha256:775d53988c05dc9a625137fed832fb43125071874fa85470b886d3b06effb810",
-                "sha256:e71c27bf4797ab48c4948a50ff75d8e5c96e09150588cadafa587aca30e1ec87"
-            ],
-            "index": "pypi",
-            "version": "==1.0.0"
+            "git": "https://github.com/pena56/django-mediumeditor.git",
+            "ref": "3ca8dab13a4c67b57e7634decbbc7a1fb647d03e"
         },
         "gunicorn": {
             "hashes": [
