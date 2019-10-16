@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="mainheading">
+        <div class="row">
+            <h1 class="sitetitle">Your Stories</h1>
+            <a href="{% url 'new_article' %}" class="ml-auto btn btn-lg btn-outline-success">Write Story</a>
+        </div>
+    </div>
+</div>
+
+<div class="accordion">
+
+    <p>
+        <a class="btn btn-outline-primary mx-2" data-toggle="collapse" href="#draft" role="button" aria-expanded="true"
+            aria-controls="collapseExample">
+            Drafts <span class="ml-5 badge badge-primary badge-pill">{{drafts|length}}</span>
+        </a>
+        <a class="btn btn-outline-primary mx-2" data-toggle="collapse" href="#published" role="button"
+            aria-expanded="true" aria-controls="collapseExample">
+            Published <span class="ml-5 badge badge-primary badge-pill">{{published|length}}</span>
+        </a>
+    </p>
+
+    <section class="collapse show featured-posts" id="draft">
+        <div class="section-title">
+            <h3><span>Drafts</span></h3>
+        </div>
+        <div class="card-columns listfeaturedtag">
+            {% for article in drafts %}
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-5 wrapthumbnail">
+                        <a href="{{article.get_absolute_url}}">
+                            <div class="thumbnail" style="background-image:url({{article.article_img.url}});">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-block">
+                            <h2 class="card-title"><a href="{{article.get_absolute_url}}">{{article.title|safe}}</a></h2>
+                            <h4 class="card-text">{{article.body|truncatewords:'10'|safe}}</h4>
+                            <p>
+                                <small class="font-weight-bold">Created on {{article.created_at|date:'M d'}} </small> <small>{{article.get_read_time}} min read
+                                </small>
+                                <span>
+                                    <div class="dropdown">
+                                        <a href="" class="" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25">
+                                                <path
+                                                    d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z"
+                                                    fill-rule="evenodd"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a href="{% url 'edit_article' slug=article.slug %}" class="dropdown-item" >Edit Article</a>
+                                            <a href="{% url 'delete_article' slug=article.slug %}" class="dropdown-item" >Delete Article</a> 
+                                        </div>
+                                    </div>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <p class="text-center">You Don't Have any Drafts.</p>
+
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="collapse featured-posts" id="published">
+        <div class="section-title">
+            <h3><span>Published</span></h3>
+        </div>
+        <div class="card-columns listfeaturedtag">
+            {% for article in published %}
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-5 wrapthumbnail">
+                        <a href="{{article.get_absolute_url}}">
+                            <div class="thumbnail" style="background-image:url({{article.article_img.url}});">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-block">
+                            <h2 class="card-title"><a href="{{article.get_absolute_url}}">{{article.title|safe}}</a></h2>
+                            <h4 class="card-text">{{article.body|truncatewords:'10'|safe}}</h4>
+                            <p>
+                                <small class="font-weight-bold">Published on {{article.updated_at|date:'M d'}} </small> <small>{{article.get_read_time}} min read
+                                </small>
+                                <span>
+                                    <div class="dropdown">
+                                        <a href="" class="" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25">
+                                                <path
+                                                    d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z"
+                                                    fill-rule="evenodd"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a href="{% url 'edit_article' slug=article.slug %}" class="dropdown-item" >Edit Article</a>
+                                            <a href="{% url 'delete_article' slug=article.slug %}" class="dropdown-item" >Delete Article</a> 
+                                        </div>
+                                    </div>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <p class="text-center">You Don't Have any Published article.</p>
+
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+{% endblock %}

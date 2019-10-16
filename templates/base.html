@@ -31,14 +31,17 @@
         </button>
         <div class="container">
             <!-- Begin Logo -->
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="{% url 'index' %}">
                 <img src="{% static 'img/logo.png' %}" alt="logo">
             </a>
             <!-- End Logo -->
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 
                 <ul class="navbar-nav ml-auto">
-                    <form class="mx-4 form-inline my-2 my-lg-0" action="">
+                    <li class="nav-item mt-2 active">
+                        <a class="btn btn-sm btn-outline-primary" href="{% url 'topics' %}">Topics</a>
+                    </li>
+                    <form class="mx-4 form-inline my-2 my-lg-0" action="{% url 'search' %}">
                         <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search">
                         <span class="search-icon"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25">
                                 <path
@@ -59,8 +62,10 @@
                             " width="30" height="30" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="">My Stories</a>
-                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'new_article' %}">Write Article</a>
+                            <a class="dropdown-item" href="{% url 'my_stories' %}">My Stories</a>
+                            <a class="dropdown-item"
+                                href="{% url 'profile' username=user.username pk=user.id %}">Profile</a>
                             <a class="dropdown-item" href="">Settings</a>
                             <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
                         </div>

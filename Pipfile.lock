@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "901328f4d353c29d29c23b7b82f6be2bacfd82b962cdac949deb5e406c01ecf9"
+            "sha256": "8417575cd4fc60ab96d899e6b7041fc2aed61eb3615a7a0c93133592fdd544fb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -25,10 +25,10 @@
         },
         "cloudinary": {
             "hashes": [
-                "sha256:a7c8f170f5c408d4dd657f0fe2f15a719a9a22eda4c65cca39e5b84d7bc89986"
+                "sha256:e1b22a75de83b34ca39faaa02af0c8662234b9173a7b6caae55fbd7c7369d8e4"
             ],
             "index": "pypi",
-            "version": "==1.18.1"
+            "version": "==1.18.2"
         },
         "dj-database-url": {
             "hashes": [
@@ -46,6 +46,13 @@
             "index": "pypi",
             "version": "==2.2.6"
         },
+        "django-appconf": {
+            "hashes": [
+                "sha256:35f13ca4d567f132b960e2cd4c832c2d03cb6543452d34e29b7ba10371ba80e3",
+                "sha256:c98a7af40062e996b921f5962a1c4f3f0c979fa7885f7be4710cceb90ebe13a6"
+            ],
+            "version": "==1.0.3"
+        },
         "django-crispy-forms": {
             "hashes": [
                 "sha256:5952bab971110d0b86c278132dae0aa095beee8f723e625c3d3fa28888f1675f",
@@ -61,6 +68,14 @@
             ],
             "index": "pypi",
             "version": "==0.3.1"
+        },
+        "django-mediumeditor": {
+            "hashes": [
+                "sha256:775d53988c05dc9a625137fed832fb43125071874fa85470b886d3b06effb810",
+                "sha256:e71c27bf4797ab48c4948a50ff75d8e5c96e09150588cadafa587aca30e1ec87"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
         },
         "gunicorn": {
             "hashes": [
@@ -162,5 +177,20 @@
             "version": "==4.1.4"
         }
     },
-    "develop": {}
+    "develop": {
+        "autopep8": {
+            "hashes": [
+                "sha256:4d8eec30cc81bc5617dbf1218201d770dc35629363547f17577c61683ccfb3ee"
+            ],
+            "index": "pypi",
+            "version": "==1.4.4"
+        },
+        "pycodestyle": {
+            "hashes": [
+                "sha256:95a2219d12372f05704562a14ec30bc76b05a5b297b21a5dfe3f6fac3491ae56",
+                "sha256:e40a936c9a450ad81df37f549d676d127b1b66000a6c500caa2b085bc0ca976c"
+            ],
+            "version": "==2.5.0"
+        }
+    }
 }

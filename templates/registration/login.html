@@ -21,36 +21,44 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Sign In</h5>
-                        <form class="form-signin" method="POST" action="{% url 'login' %}">
-                            {% csrf_token %}
-                            <div class="form-label-group">
-                                <input type="text" id="inputUsername" class="form-control" placeholder="Username"
-                                    required autofocus name="username">
-                                <label for="inputUsername">Username</label>
-                            </div>
+        <div class="my-3 lead">
+            <p><a href="{% url 'index' %}" class="btn btn-link btn-lg text-white">
+                    << Back To Home </a> </p> </div> <div class="row">
+                        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                            <div class="card card-signin my-5">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Sign In</h5>
+                                    <form class="form-signin" method="POST" action="{% url 'login' %}">
+                                        {% csrf_token %}
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputUsername" class="form-control"
+                                                placeholder="Username" required autofocus name="username">
+                                            <label for="inputUsername">Username</label>
+                                        </div>
 
-                            <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                                    required name="password">
-                                <label for="inputPassword">Password</label>
-                            </div>
+                                        <div class="form-label-group">
+                                            <input type="password" id="inputPassword" class="form-control"
+                                                placeholder="Password" required name="password">
+                                            <label for="inputPassword">Password</label>
+                                        </div>
 
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
-                                in</button>
-                            <hr class="my-4">
-                            <a href="" class="btn btn-lg btn-instagram btn-block text-uppercase" type="submit"><i
-                                    class="fab fa-twitter mr-2"></i> Sign in with Instagram</a>
-                            <a href="" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                                    class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                                        <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                            type="submit">Sign
+                                            in</button>
+                                        <div class="my-2 text-center">
+                                            <a href="{% url 'register' %}" class="text-dark">Dont Have an Account? Sign
+                                                Up</a>
+                                        </div>
+                                        <hr class="my-4">
+                                        <a href="" class="btn btn-lg btn-instagram btn-block text-uppercase"
+                                            type="submit"><i class="fab fa-twitter mr-2"></i> Sign in with Instagram</a>
+                                        <a href="" class="btn btn-lg btn-facebook btn-block text-uppercase"
+                                            type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with
+                                            Facebook</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
         </div>
     </div>
 </body>
