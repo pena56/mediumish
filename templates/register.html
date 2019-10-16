@@ -21,6 +21,9 @@
 
 <body>
     <div class="container">
+        <div class="my-3 lead">
+            <p><a href="{% url 'index' %}" class="btn btn-link btn-lg text-white"> << Back To Home </a></p>
+        </div>
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
@@ -48,6 +51,9 @@
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                             <hr class="my-4">
+                            <div class="my-2 text-center">
+                                <a href="{% url 'login' %}" class="text-dark">Already Have an Account? Sign In</a>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -21,51 +21,49 @@
 
 <body>
     <div class="container">
+            <p><a href="{% url 'index' %}" class="btn btn-link btn-lg text-white">
+                    << Back To Home </a> </p>
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
+                <div class="card card-signin">
                     <div class="card-body">
                         <h5 class="card-title text-center">Update Profile</h5>
-                        <form class="form-signin" method="POST" enctype="multipart/form-data" action="{% url 'update_user' pk=user.id %}">
+                        <form class="form-signin" method="POST" enctype="multipart/form-data" action="{% url 'update_user' username=user.username pk=user.id %}">
                             {% csrf_token %}
                             <div class="form-label-group">
-                                <input type="text" id="inputFirstname" class="form-control" placeholder="Firstname"
+                                <input value="{{user.first_name}}" type="text" id="inputFirstname" class="form-control" placeholder="Firstname"
                                     required autofocus name="first_name">
                                 <label for="inputFirstname">Firstname</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="inputLastname" class="form-control" placeholder="Lastname"
+                                <input value="{{user.last_name}}" type="text" id="inputLastname" class="form-control" placeholder="Lastname"
                                     required autofocus name="last_name">
                                 <label for="inputLastname">Lastname</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email"
+                                <input value="{{user.email}}" type="email" id="inputEmail" class="form-control" placeholder="Email"
                                     required name="email">
                                 <label for="inputEmail">Email</label>
                             </div>
 
                             <div class="form-label-group">
-                                <textarea id="inputBio" class="form-control" placeholder="Bio"
-                                required name="bio" cols="30" rows="3"></textarea>
+                                <textarea value="{{user.bio}}" id="inputBio" class="form-control" placeholder="Bio" name="bio" cols="30" rows="3"></textarea>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="url" id="inputFacebook" class="form-control" placeholder="Facebook URL"
-                                    required name="facebook_profile">
+                                <input value="{{user.facebook_profile}}" type="url" id="inputFacebook" class="form-control" placeholder="Facebook URL" name="facebook_profile">
                                 <label for="inputFacebook">Facebook Profile</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="url" id="inputTwitter" class="form-control" placeholder="Twitter URL"
-                                    required name="twitter_profile">
+                                <input value="{{user.twitter_profile}}" type="url" id="inputTwitter" class="form-control" placeholder="Twitter URL" name="twitter_profile">
                                 <label for="inputTwitter">Twitter Profile</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="file" id="inputProfilepic" class="form-control" placeholder="Email"
-                                    required name="profile_pic">
+                                <input type="file" id="inputProfilepic" class="form-control" placeholder="Email" name="profile_pic">
                                 <label for="inputProfilepic">Profile Pic</label>
                             </div>
 

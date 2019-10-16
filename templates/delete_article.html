@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <div class="card p-3">
+                <p class="text-center">Are You sure you want to delete - {{object}}</p>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <button type="submit" class="btn btn-outline-danger m-auto">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'account',
     'topic',
+    'article',
+    'mediumeditor',
 ]
 
 MIDDLEWARE = [
@@ -147,4 +149,33 @@ AUTH_USER_MODEL = 'account.CustomUser'
 
 LOGOUT_REDIRECT_URL = 'login'
 
+LOGIN_REDIRECT_URL = 'index'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIUM_EDITOR_THEME = 'beagle'
+
+MEDIUM_EDITOR_OPTIONS = {
+    'toolbar': {
+        'static': True,
+        'buttons': [
+            'anchor',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'subscript',
+            'superscript',
+            'h1',
+            'h3',
+            'h6',
+        ]
+    },
+    'paste': {
+        'forcePlainText': True,
+        'cleanPastedHTML': False,
+        'cleanReplacements': [],
+        'cleanAttrs': ['class', 'style', 'dir'],
+        'cleanTags': ['meta',]
+    }
+}

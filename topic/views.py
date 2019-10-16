@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 
 from .models import Topic
+from article.models import Article
 
 # Create your views here.
 class TopicView(ListView):
@@ -13,8 +15,12 @@ class TopicView(ListView):
 class TopicDetailView(DetailView):
     model = Topic
     template_name = 'topic.html'
-    context_object_name = 'topic'
-
-    # def get_context_data(self):
-    #     context = super(TopicDetailView, self).get_context_data(**kwargs)
-    #     return context
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articles'] = Article.objects.filter(
+            Q(topic__slug__contains=self.kwargs['slug']) &
+            Q(status='published')
+        )
+        return context
+    
