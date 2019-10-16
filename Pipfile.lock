@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1c0d8a8f88144ea31a3c77291024f0ac9e671792cad306ec70c21d48b28dc2bc"
+            "sha256": "087148d8f1c5b7ae07b0155d8dea4ec16984d6fe8a890801cab0178c1737cb38"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -61,10 +61,6 @@
             ],
             "index": "pypi",
             "version": "==0.3.1"
-        },
-        "django-mediumeditor": {
-            "git": "https://github.com/pena56/django-mediumeditor.git",
-            "ref": "3ca8dab13a4c67b57e7634decbbc7a1fb647d03e"
         },
         "gunicorn": {
             "hashes": [

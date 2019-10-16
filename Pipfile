@@ -15,7 +15,6 @@ dj-database-url = "*"
 cloudinary = "*"
 whitenoise = "*"
 pillow = "*"
-django-mediumeditor = {git = "https://github.com/pena56/django-mediumeditor.git"}
 
 [requires]
 python_version = "3.7"

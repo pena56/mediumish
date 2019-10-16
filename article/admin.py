@@ -9,5 +9,3 @@ class ArticleAdmin(MediumEditorAdmin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title',]}
     mediumeditor_fields = ('body',)
 
-
-# admin.site.register(Article, ArticleAdmin)
