@@ -17,7 +17,7 @@ class CreateUserView(CreateView):
 
 class UpdateUserView(UpdateView):
     model = CustomUser
-    fields = ['email', 'first_name', 'last_name', 'profile_pic', 'bio', 'facebook_profile', 'twitter_profile']
+    fields = ['first_name', 'last_name', 'profile_pic', 'bio',]
     template_name = 'update_user.html'
     # success_url = reverse_lazy('index')
 

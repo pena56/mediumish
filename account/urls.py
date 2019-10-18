@@ -6,6 +6,5 @@ from .views import CreateUserView, UpdateUserView, DeleteUserView
 urlpatterns = [
     path('register/', CreateUserView.as_view(), name='register'),
     path('@<str:username><int:pk>/edit/', UpdateUserView.as_view(), name='update_user'),
-    # path('profile/', ProfileView.as_view(), name='profile'),
     path('delete/<slug:slug>/', DeleteUserView.as_view(), name='delete_user'),
 ]
