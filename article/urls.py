@@ -9,6 +9,7 @@ from .views import (
     MyStoriesView, 
     EditArticleView,
     DeleteArticleView,
+    MySettingsView,
 )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path('@<str:username><int:pk>/', AuthorProfileView.as_view(), name='profile'),
     path('<slug:slug>/edit/', EditArticleView.as_view(), name='edit_article'),
     path('<slug:slug>/delete/', DeleteArticleView.as_view(), name='delete_article'),
+    path('me/settings/', MySettingsView.as_view(), name='settings'),
 ]

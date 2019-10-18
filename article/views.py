@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 from .models import Article
 from .forms import ArticleCreateForm, ArticleEditForm
 from account.models import CustomUser
+from account.forms import UserSettingsForm
 
 # Create your views here.
 
@@ -101,3 +102,20 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
         if obj.author != request.user:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
+
+
+class MySettingsView(LoginRequiredMixin, View):
+    
+    def get(self, request, *args, **kwargs):
+        user = CustomUser.objects.get(id=request.user.id)
+        form = UserSettingsForm(instance=user)
+        return render(request, 'settings.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        user = CustomUser.objects.get(id=request.user.id)
+        form = UserSettingsForm(request.POST or None, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('settings')
+        else:
+            return redirect('settings')
