@@ -19,7 +19,6 @@ class UpdateUserView(UpdateView):
     model = CustomUser
     fields = ['first_name', 'last_name', 'profile_pic', 'bio',]
     template_name = 'update_user.html'
-    # success_url = reverse_lazy('index')
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -31,6 +30,6 @@ class UpdateUserView(UpdateView):
 
 class DeleteUserView(DeleteView):
     model = CustomUser
-    template_name = 'delete_user.html'
-    success_url = reverse_lazy('home')
+    template_name = 'delete_account.html'
+    success_url = reverse_lazy('index')
     
