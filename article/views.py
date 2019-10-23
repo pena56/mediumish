@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -12,6 +12,7 @@ from .models import Article
 from .forms import ArticleCreateForm, ArticleEditForm
 from account.models import CustomUser
 from account.forms import UserSettingsForm
+from response.models import Response
 
 # Create your views here.
 
@@ -27,6 +28,12 @@ class ArticleDetailView(DetailView):
     template_name = 'article.html'
     context_object_name = 'article'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        article = self.get_object()
+        context['responses'] = Response.objects.filter(article=article).order_by('-id')
+        return context
+
 
 class AuthorProfileView(DetailView):
     model = CustomUser
@@ -34,7 +41,6 @@ class AuthorProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(kwargs)
         context['articles'] = Article.objects.filter(
             Q(author=kwargs['object']) & 
             Q(status='published')
@@ -119,3 +125,13 @@ class MySettingsView(LoginRequiredMixin, View):
             return redirect('settings')
         else:
             return redirect('settings')
+
+
+class ResponseView(LoginRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        fan = request.user
+        article = Article.objects.get(id=kwargs['pk'])
+        response = request.POST['response']
+        Response.objects.create(article=article, fan=fan, response=response)
+        return HttpResponseRedirect(article.get_absolute_url())

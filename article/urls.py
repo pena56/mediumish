@@ -10,6 +10,7 @@ from .views import (
     EditArticleView,
     DeleteArticleView,
     MySettingsView,
+    ResponseView,
 )
 
 urlpatterns = [
@@ -22,4 +23,5 @@ urlpatterns = [
     path('<slug:slug>/edit/', EditArticleView.as_view(), name='edit_article'),
     path('<slug:slug>/delete/', DeleteArticleView.as_view(), name='delete_article'),
     path('me/settings/', MySettingsView.as_view(), name='settings'),
+    path('response/<int:pk>/', ResponseView.as_view(), name='response'),
 ]

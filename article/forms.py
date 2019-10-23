@@ -9,7 +9,6 @@ class ArticleCreateForm(forms.ModelForm):
         model = Article
         fields = ('title', 'body', 'topic', 'article_img', 'status', )
         widgets = {
-            'title': MediumEditorTextarea(),
             'body': MediumEditorTextarea(),
         }
 
@@ -19,7 +18,6 @@ class ArticleEditForm(forms.ModelForm):
         model = Article
         fields = ('title', 'body', 'topic', 'article_img', 'status', )
         widgets = {
-            'title': MediumEditorTextarea(),
             'body': MediumEditorTextarea(),
         }
 

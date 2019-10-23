@@ -45,7 +45,7 @@
 				<ul>
 					<li>
 						<a type="button" data-toggle="modal" data-target="#exampleModalLong" href="#comments">
-							42<br />
+							{{responses|length}}<br />
 							<svg class="svgIcon-use" width="29" height="29" viewbox="0 0 29 29">
 								<path
 									d="M21.27 20.058c1.89-1.826 2.754-4.17 2.754-6.674C24.024 8.21 19.67 4 14.1 4 8.53 4 4 8.21 4 13.384c0 5.175 4.53 9.385 10.1 9.385 1.007 0 2-.14 2.95-.41.285.25.592.49.918.7 1.306.87 2.716 1.31 4.19 1.31.276-.01.494-.14.6-.36a.625.625 0 0 0-.052-.65c-.61-.84-1.042-1.71-1.282-2.58a5.417 5.417 0 0 1-.154-.75zm-3.85 1.324l-.083-.28-.388.12a9.72 9.72 0 0 1-2.85.424c-4.96 0-8.99-3.706-8.99-8.262 0-4.556 4.03-8.263 8.99-8.263 4.95 0 8.77 3.71 8.77 8.27 0 2.25-.75 4.35-2.5 5.92l-.24.21v.32c0 .07 0 .19.02.37.03.29.1.6.19.92.19.7.49 1.4.89 2.08-.93-.14-1.83-.49-2.67-1.06-.34-.22-.88-.48-1.16-.74z">
@@ -129,8 +129,8 @@
 					<div class="col-md-12 m-auto">
 						<div class="my-card card m-auto py-2 px-2">
 							<div class="row">
-								<p class="ml-4 mt-2 text-dark"> <span class="font-weight-bold">{{article.title}}
-									</span> <br>
+								<p class="ml-4 mt-2 text-dark"> <span class="font-weight-bold">{{article.title|safe}}
+									</span> <br> <br>
 									<span>{{article.author.first_name}}
 										{{article.author.last_name}}</span></p>
 								</a>
@@ -139,46 +139,34 @@
 
 						<div class="container">
 							<div class="col-md-10 m-auto py-4">
-								<p class="font-weight-bold">Responses</p>
-								<!-- Material form contact -->
-								<div class="card my-card">
-									<!--Card content-->
-									<div class="card-body px-lg-5 pt-0">
+								<p class="font-weight-bold">Write Your Response</p>
+								<form class="text-center" action="{% url 'response' pk=article.id %}" method="POST">
+									{% csrf_token %}
+									<textarea class="form-control" name="response" id="" cols="30" rows="5"></textarea>
+									<button class="btn btn-outline-success btn-rounded z-depth-0 my-4 waves-effect"
+										type="submit" {% if not user.is_authenticated %} disabled {% endif %}>Publish</button>
 
-										<!-- Form -->
-										<form class="text-center" action="" method="POST">
-											{% csrf_token %}
-											{{form|crispy}}
-											<!-- Send button -->
-											<button
-												class="btn btn-outline-success btn-rounded z-depth-0 my-4 waves-effect"
-												type="submit">Publish</button>
+								</form>
 
-										</form>
-										<!-- Form -->
 
-									</div>
-
-								</div>
-								<!-- Material form contact -->
-								{% for comment in comments %}
+								{% for response in responses %}
 								<div class="mt-3">
 									<div class="my-card card m-auto py-2 px-2">
 										<div class="row">
 											<a href="" class="text-dark ml-4 mt-2">
-												<img src="{{comment.user_comment.profile_pic.url}}"
+												<img src="{{response.fan.profile_pic.url}}"
 													class="rounded-circle profile-pic-border" width="50" height="50"
 													alt="">
 											</a>
 											<a href="">
 												<p class="mt-2 ml-1 text-success"> <span
-														class="">{{comment.user_comment.first_name}}
-														{{comment.user_comment.last_name}}
-													</span> <br>
-													<span class="text-dark">{{comment.date|date:'M d'}}</span></p>
-											</a>
+														class="">{{response.fan.first_name}}
+														{{response.fan.last_name}}
+													</span>
+											</a> <br>
+											<span class="text-dark">{{response.replied_on|date:'M d'}}</span></p>
 										</div>
-										<p class="px-3">{{comment.comment}}</p>
+										<p class="px-3">{{response.response}}</p>
 									</div>
 								</div>
 
