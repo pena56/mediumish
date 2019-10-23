@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'topic',
     'article',
     'mediumeditor',
+    'response',
 ]
 
 MIDDLEWARE = [
