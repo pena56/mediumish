@@ -32,6 +32,14 @@ class ArticleDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         article = self.get_object()
         context['responses'] = Response.objects.filter(article=article).order_by('-id')
+        context['related'] = list(Article.objects.filter(
+            Q(topic=article.topic) &
+            Q(status='published')
+        ).order_by('-id')[:3])
+
+        if article in context['related']:
+            context['related'].remove(article)
+
         return context
 
 
