@@ -15,6 +15,7 @@ dj-database-url = "*"
 cloudinary = "*"
 whitenoise = "*"
 pillow = "*"
+django-appconf = "*"
 
 [requires]
 python_version = "3.7"
